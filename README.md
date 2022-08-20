@@ -204,16 +204,13 @@ Example Search question
 
 ```bash
 {
-  "currentCategory": "Science", 
   "question": {
     "answer": "Alexander Fleming", 
     "category": 1, 
     "difficulty": 3, 
     "id": 21, 
     "question": "Who discovered penicillin?"
-  }, 
-  "success": true, 
-  "totalQuestions": 3
+  }
 }
 ```
 

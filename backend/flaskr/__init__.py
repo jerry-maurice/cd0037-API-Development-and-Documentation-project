@@ -203,29 +203,27 @@ def create_app(test_config=None):
             abort(400)
         try:
             if quiz_category["id"] == 0:
-                category = "All"
                 question = Question.query.order_by(func.random()).filter(
                     Question.id.notin_(previous_questions)
                 )
-                num = question.count()
-                question = question.first()
 
             else:
-                category = (Category.query.get(quiz_category["id"])).type
                 question = Question.query.order_by(func.random()).filter(
                     Question.category == quiz_category["id"]
                 ).filter(
                     Question.id.notin_(previous_questions)
                 )
-                num = question.count()
-                question = question.first()
+
+            if len(question.all()):
+                question = (question.first()).format()
+            else:
+                question = ""
 
             return jsonify({
                 "success": True,
-                "question": question.format(),
-                "totalQuestions": num,
-                "currentCategory": category,
+                "question": question,
             })
+
         except:
             abort(404)
 

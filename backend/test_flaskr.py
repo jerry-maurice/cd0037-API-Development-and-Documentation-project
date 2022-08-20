@@ -67,8 +67,6 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
         self.assertEqual(data["deleted"], 19)
-        self.assertTrue(data["totalQuestions"])
-        self.assertEqual(question, None)
 
     def test_create_question(self):
         res = self.client().post("/questions", json=self.new_question)
@@ -108,7 +106,6 @@ class TriviaTestCase(unittest.TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertEqual(data["success"], True)
         self.assertTrue(data["question"])
-        self.assertTrue(data["totalQuestions"])
 
     def test_405_if_question_creation_not_allowed(self):
         res = self.client().post("/questions/45", json=self.new_question)
