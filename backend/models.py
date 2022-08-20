@@ -6,7 +6,7 @@ import json
 database_name = os.getenv('database_name', 'trivia')
 database_host = os.getenv('database_host', 'localhost:5432')
 
-database_path = 'postgresql://{}/{}'.format('localhost:5432', database_name)
+database_path = 'postgresql://{}/{}'.format(database_host, database_name)
 
 db = SQLAlchemy()
 
